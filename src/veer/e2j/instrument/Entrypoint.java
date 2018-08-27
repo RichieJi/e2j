@@ -32,6 +32,10 @@ public class Entrypoint {
         collector.attach(instr);
     }
 
+    public static void agentmain(String options, Instrumentation instr) {
+        premain(options, instr);
+    }
+
     private static Path pwd() {
         return Paths.get(".");
     }
