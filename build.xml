@@ -15,6 +15,7 @@
     <mkdir dir="${art-dir}" />
     <jar jarfile="${art-dir}/e2j-agent.jar" basedir="${build-dir}">
       <manifest>
+        <attribute name="Agent-Class" value="veer.e2j.instrument.Entrypoint" />
         <attribute name="Premain-Class" value="veer.e2j.instrument.Entrypoint" />
       </manifest>
     </jar>

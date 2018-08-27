@@ -12,6 +12,18 @@ import java.nio.file.Paths;
 public class Entrypoint {
 
     public static void premain(String options, Instrumentation instr) {
+        intrument(options, instr);
+    }
+
+    public static void agentmain(String options, Instrumentation instr) {
+        intrument(options, instr);
+    }
+
+    private static Path pwd() {
+        return Paths.get(".");
+    }
+
+    private static void intrument(String options, Instrumentation instr) {
         Path output;
         try {
             output = (options == null || options.isEmpty())
@@ -25,18 +37,10 @@ public class Entrypoint {
             private ClassLoader target;
 
             public boolean accept(ClassLoader loader, String name) {
-                 return true;
+                return true;
             }
         });
         collector.prepare();
         collector.attach(instr);
-    }
-
-    public static void agentmain(String options, Instrumentation instr) {
-        premain(options, instr);
-    }
-
-    private static Path pwd() {
-        return Paths.get(".");
     }
 }
